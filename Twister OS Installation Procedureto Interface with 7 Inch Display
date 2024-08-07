@@ -1,5 +1,41 @@
 To Install Twister OS Download Latest OS from 
 https://twisteros.com/twisteros.html
 
-Go to below Waveshare Link:
+Go to below Waveshare Link for more about Installation:
 https://www.waveshare.com/wiki/7inch_DSI_LCD_(C)
+
+
+Do the below step:
+#Step 1: Download and enter the Waveshare-DSI-LCD driver folder
+git clone https://github.com/waveshare/Waveshare-DSI-LCD
+cd Waveshare-DSI-LCD
+ 
+#Step 2: Enter "uname --all" in the terminal to view the kernel version and "cd" to the corresponding file directory
+#6.1.21 then run the following command
+cd 6.1.21
+ 
+#Step 3: Please check the bits of your system, enter the 32 directory for 32-bit systems, and enter the 64 directory for 64-bit systems
+cd 32
+#cd 64
+ 
+#Step 4: Enter your corresponding model command to install the driver, pay attention to the selection of the I2C DIP switch
+#7inch DSI LCD (C) 1024×600 driver:
+sudo bash ./WS_xinchDSI_MAIN.sh 70C I2C1
+ 
+#Step 5: Wait for a few seconds, when the driver installation is complete and no error is prompted, restart and load the DSI driver and it can be used normally
+sudo reboot
+
+
+Go Display chnage the Display oriantention to Inverted 
+
+
+sudo nano /boot/config.txt  [my case I have roteted to 180 to touch to work ] 
+#Change the command for the touch rotation angle at the end of the config.txt file, reboot it to take effect (the command for 0° touch direction exists by default) 
+#90°:
+dtoverlay=WS_xinchDSI_Touch,invertedx,swappedxy,I2C_bus=1
+#180°:
+dtoverlay=WS_xinchDSI_Touch,invertedx,invertedy,I2C_bus=1
+#270°:
+dtoverlay=WS_xinchDSI_Touch,invertedy,swappedxy,I2C_bus=1
+#0°:
+dtoverlay=WS_xinchDSI_Touch,I2C_bus=1
