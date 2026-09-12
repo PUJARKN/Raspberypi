@@ -1,0 +1,21 @@
+You can also install the useful network tools available in Bullseye:
+
+sudo apt install -y \
+nmap \
+tcpdump \
+wireshark \
+arp-scan \
+net-tools \
+netdiscover \
+aircrack-ng \
+iw \
+macchanger \
+john \
+hydra
+
+
+Start with sudo arp-scan --localnet, then use Nmap on an individual device to inspect its open ports:
+sudo nmap -sV 192.168.1.8
+
+Scan all TCP ports on this PC:
+sudo nmap -p- -T4 192.168.1.8
